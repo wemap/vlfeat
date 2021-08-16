@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(vlfeat
+VERSION 0.9.21
 HOMEPAGE_URL "https://github.com/vlfeat/vlfeat"
 LANGUAGES C)
 

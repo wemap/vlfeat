@@ -111,6 +111,24 @@ foreach(header ${VLFEAT_HEADERS})
   )
 endforeach()
 
+# Create basic package file linked to the current version of the package
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${PROJECT_BINARY_DIR}/cmake/vlfeat-config-version.cmake"
+  VERSION ${CMAKE_PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
+
+configure_file(${PROJECT_SOURCE_DIR}/cmake/vlfeat-config.cmake.in
+  ${PROJECT_BINARY_DIR}/cmake/vlfeat-config.cmake
+  COPYONLY
+)
+
+install(FILES ${PROJECT_BINARY_DIR}/cmake/vlfeat-config.cmake
+  ${PROJECT_BINARY_DIR}/cmake/vlfeat-config-version.cmake
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/vlfeat
+)
+
 install(EXPORT vlfeat-targets
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/vlfeat
 )
